@@ -88,7 +88,6 @@ class CardDeck {
     console.log(this.countPoints === this.deckSize / 2);
   }
   resetGameStats() {
-    this.deckSize = deckSize;
     this.deckArray = [];
     this.selectedCards = { card1: null, card2: null };
     this.selectedCardsCount = 0;
