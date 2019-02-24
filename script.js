@@ -101,7 +101,6 @@ gameControls.addEventListener('click', e => {
 
     gameLevel = Number(e.target.getAttribute('data-level')) * 10;
     const gameTime = gameDetails.querySelector('.time > span');
-    cardDeck.innerHTML = '';
 
     game.addCardsToDeck(gameLevel);
     gameDurationHandler = setInterval(() => {
