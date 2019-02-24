@@ -104,7 +104,6 @@ gameControls.addEventListener('click', e => {
     cardDeck.innerHTML = '';
 
     game.addCardsToDeck(gameLevel);
-    cardDeck.innerHTML = 'LOADING........';
     gameDurationHandler = setInterval(() => {
       if (formattedTime[1] % 60 === 0 && formattedTime[1] > 0) {
         formattedTime[0]++;
