@@ -11,6 +11,7 @@ class CardDeck {
 
   addCardsToDeck(amount) {
     this.deckSize = amount;
+    this.deckArray = [];
 
     for (let i = 0; i < amount / 2; i++) {
       this.deckArray.push(`assets/card_front/${i}.png`);
@@ -18,7 +19,6 @@ class CardDeck {
 
     this.deckArray.push(...this.deckArray);
     this.deckArray = this.shuffleCards(this.deckArray);
-    console.log(this.deckArray);
 
     return this.deckArray;
   }
