@@ -1,16 +1,16 @@
-import CardDeck from './CardDeck.js';
+import CardDeck from "./CardDeck.js";
 
-const cardDeck = document.querySelector('.game-content-wrapper');
-const gameControls = document.querySelector('.game-control-wrapper');
-const gameDetails = document.querySelector('.game-details-wrapper');
-const gameScore = document.querySelector('.score > span');
-const gameMoves = document.querySelector('.moves > span');
+const cardDeck = document.querySelector(".game-content-wrapper");
+const gameControls = document.querySelector(".game-control-wrapper");
+const gameDetails = document.querySelector(".game-details-wrapper");
+const gameScore = document.querySelector(".score > span");
+const gameMoves = document.querySelector(".moves > span");
 let gameDurationHandler = null;
 let gameLevel = 1;
 let game = null;
 
 const createContainerDiv = (cssClass, { attribute, value } = {}) => {
-  const containerDiv = document.createElement('DIV');
+  const containerDiv = document.createElement("DIV");
   containerDiv.classList.add(cssClass);
 
   if (attribute) containerDiv.setAttribute(attribute, value);
@@ -18,10 +18,10 @@ const createContainerDiv = (cssClass, { attribute, value } = {}) => {
   return containerDiv;
 };
 
-const createCardDiv = (cssClass, srcString = '') => {
+const createCardDiv = (cssClass, srcString = "") => {
   const cardFaceContainer = createContainerDiv(cssClass);
-  const cardFaceImg = document.createElement('IMG');
-  cardFaceImg.setAttribute('src', `${srcString}`);
+  const cardFaceImg = document.createElement("IMG");
+  cardFaceImg.setAttribute("src", `${srcString}`);
   cardFaceContainer.appendChild(cardFaceImg);
 
   return cardFaceContainer;
@@ -29,37 +29,37 @@ const createCardDiv = (cssClass, srcString = '') => {
 
 const createCard = index => {
   // div class flip-container
-  const flipContainer = createContainerDiv('flip-container', {
-    attribute: 'data-key',
+  const flipContainer = createContainerDiv("flip-container", {
+    attribute: "data-key",
     value: index
   });
   // div class flipper
-  const flipper = createContainerDiv('flipper');
+  const flipper = createContainerDiv("flipper");
 
   //Append everything into their container
-  flipper.appendChild(createCardDiv('front'));
-  flipper.appendChild(createCardDiv('back', 'assets/card_back/ztm.png'));
+  flipper.appendChild(createCardDiv("front"));
+  flipper.appendChild(createCardDiv("back", "assets/card_back/ztm.png"));
   flipContainer.appendChild(flipper);
 
   cardDeck.appendChild(flipContainer);
 };
 
-cardDeck.addEventListener('click', e => {
+cardDeck.addEventListener("click", e => {
   const parentEventContainer = e.target.parentElement.parentElement;
   const cardClassList = parentEventContainer.classList;
 
-  if (cardClassList.contains('flipper') && !cardClassList.contains('active')) {
+  if (cardClassList.contains("flipper") && !cardClassList.contains("active")) {
     const result = game.activeCards(
-      parentEventContainer.parentElement.getAttribute('data-key')
+      parentEventContainer.parentElement.getAttribute("data-key")
     );
-    const cardFrontFaceImg = parentEventContainer.querySelector('img');
+    const cardFrontFaceImg = parentEventContainer.querySelector("img");
 
-    parentEventContainer.classList.add('active');
+    parentEventContainer.classList.add("active");
 
     //set card front face
-    cardFrontFaceImg.setAttribute('src', result.cardAsset);
+    cardFrontFaceImg.setAttribute("src", result.cardAsset);
     //flip card to show front face
-    parentEventContainer.style.transform = 'rotateY(180deg)';
+    parentEventContainer.style.transform = "rotateY(180deg)";
     if (result.matching === false) {
       setTimeout(() => {
         Object.values(result.cards).forEach(cardKey => {
@@ -67,12 +67,12 @@ cardDeck.addEventListener('click', e => {
             `div[data-key= "${cardKey}"] > .flipper`
           );
 
-          activeCard.style.transform = 'rotateY(0deg)';
-          activeCard.classList.toggle('active');
+          activeCard.style.transform = "rotateY(0deg)";
+          activeCard.classList.toggle("active");
 
           setTimeout(() => {
-            const cardFrontFaceImg = activeCard.querySelector('img');
-            cardFrontFaceImg.setAttribute('src', '');
+            const cardFrontFaceImg = activeCard.querySelector("img");
+            cardFrontFaceImg.setAttribute("src", "");
           }, 500);
         });
       }, 600);
@@ -86,21 +86,22 @@ cardDeck.addEventListener('click', e => {
 
 const formatTimeString = numb => (numb < 10 ? `0${numb}` : numb);
 
-gameControls.addEventListener('click', e => {
+gameControls.addEventListener("click", e => {
   clearInterval(gameDurationHandler);
 
-  if (event.target.nodeName === 'BUTTON') {
+  if (event.target.nodeName === "BUTTON") {
     const formattedTime = [0, 0];
     game = new CardDeck();
 
     gameControls
-      .querySelectorAll('button')
-      .forEach(btn => btn.classList.remove('active'));
+      .querySelectorAll("button")
+      .forEach(btn => btn.classList.remove("active"));
 
-    event.target.classList.add('active');
+    event.target.classList.add("active");
 
-    gameLevel = Number(e.target.getAttribute('data-level')) * 10;
-    const gameTime = gameDetails.querySelector('.time > span');
+    gameLevel = Number(e.target.getAttribute("data-level")) * 10;
+    const gameTime = gameDetails.querySelector(".time > span");
+    cardDeck.innerHTML = "";
 
     game.addCardsToDeck(gameLevel);
     gameDurationHandler = setInterval(() => {
