@@ -11,7 +11,7 @@ class CardDeck {
 
   addCardsToDeck(amount) {
     this.deckSize = amount;
-    this.deckArray = [];
+    this.resetGameStats();
 
     for (let i = 0; i < amount / 2; i++) {
       this.deckArray.push(`assets/card_front/${i}.png`);
@@ -86,6 +86,15 @@ class CardDeck {
 
   gameFinished() {
     console.log(this.countPoints === this.deckSize / 2);
+  }
+  resetGameStats() {
+    this.deckSize = deckSize;
+    this.deckArray = [];
+    this.selectedCards = { card1: null, card2: null };
+    this.selectedCardsCount = 0;
+
+    this.countPoints = 0;
+    this.countMoves = 0;
   }
 }
 
