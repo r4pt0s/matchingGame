@@ -93,6 +93,12 @@ gameControls.addEventListener('click', e => {
     const formattedTime = [0, 0];
     game = new CardDeck();
 
+    gameControls
+      .querySelectorAll('button')
+      .forEach(btn => btn.classList.remove('active'));
+
+    event.target.classList.add('active');
+
     gameLevel = Number(e.target.getAttribute('data-level')) * 10;
     const gameTime = gameDetails.querySelector('.time > span');
     cardDeck.innerHTML = '';

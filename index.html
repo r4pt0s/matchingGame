@@ -10,22 +10,23 @@
   <body>
     <header>The Matching Game</header>
 
-    <div class="game-control-wrapper">
-      <button class="easy" data-level="1">Easy</button>
-      <button class="medium" data-level="2">medium</button>
-      <button class="hard" data-level="3">hard</button>
-      <button class="reset" disabled>Reset</button>
-    </div>
-    <div class="game-details-wrapper">
-      <div class="time">Time <span>00:00</span></div>
-      <div class="score">Points: <span>0</span></div>
-      <div class="moves">Moves: <span>0</span></div>
-    </div>
     <div class="game-scene">
-      <div class="game-content-wrapper">
-        <div class="overlay">
-          <p>Game Over!!!</p>
+      <div class="game-control-wrapper">
+        <div class="game-details-wrapper">
+          <div class="time">Time <span>00:00</span></div>
+          <div class="score">Points <span>0</span></div>
+          <div class="moves">Moves <span>0</span></div>
         </div>
+        <div class="game-level-btngrp">
+          <button class="easy" data-level="1">Easy</button>
+          <button class="medium" data-level="2">Medium</button>
+          <button class="hard" data-level="3">Hard</button>
+        </div>
+      </div>
+      <div class="game-content-wrapper">
+        <!-- <div class="overlay">
+          <p>Game Over!!!</p>
+        </div> -->
       </div>
     </div>
 
@@ -41,7 +42,13 @@
           </div>
         </div> -->
 
-    <footer>MY SUPER COOL FOOTER!!!</footer>
+    <footer>
+      <div class="author">
+        Made with ♥ and a lot of ☕
+        <span>Follow me on </span>
+        <img src="assets/logos/github.svg" width="20" />
+      </div>
+    </footer>
 
     <script src="script.js" type="module"></script>
   </body>

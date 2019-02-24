@@ -11,6 +11,7 @@ class CardDeck {
 
   addCardsToDeck(amount) {
     this.deckSize = amount;
+
     for (let i = 0; i < amount / 2; i++) {
       this.deckArray.push(`assets/card_front/${i}.png`);
     }
