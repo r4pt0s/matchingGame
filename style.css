@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Black+Ops+One|Lobster|Monoton|Press+Start+2P');
+@import url("https://fonts.googleapis.com/css?family=Black+Ops+One|Lobster|Monoton|Press+Start+2P");
 
 /* font-family: 'Lobster', cursive;
 
@@ -7,6 +7,8 @@
     font-family: 'Press Start 2P', cursive;
 
     font-family: 'Black Ops One', cursive; */
+
+/**********************************************/
 
 :root {
   --text-color: #333333;
@@ -17,13 +19,12 @@ body {
   background-color: #4b4b4b;
   margin: 0;
   padding: 0;
-  height: 100%;
   background-image: url(assets/bg_pattern/esch.png);
   background-repeat: repeat;
 }
 
 header {
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   width: 40vw;
   font-size: 3rem;
   margin: 8px auto;
@@ -35,38 +36,17 @@ header {
 
 .game-scene {
   display: flex;
-  width: 90vw;
   justify-content: center;
-  align-items: start;
   flex-wrap: wrap;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 90px;
-}
-
-.game-content-wrapper {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(4, 20vw);
-  justify-items: center;
-  align-content: center;
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-  padding-right: 8vw;
-  background-color: rgba(245, 245, 245, 0.1);
-  border-radius: 15px;
+  width: 100vw;
 }
 
 .game-control-wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  width: 50vw;
+  width: 100vw;
   padding: 10px;
-  background-color: rgba(245, 245, 245, 0.1);
-  border-radius: 15px 15px 0px 0px;
-  border-bottom: 5px dotted rgba(17, 17, 17, 0.3);
 }
 
 .game-control-wrapper .game-level-btngrp {
@@ -76,7 +56,7 @@ header {
 }
 
 .game-control-wrapper button {
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 2vh;
   margin: 5px 5px;
   border-radius: 5px;
@@ -109,11 +89,10 @@ header {
   color: #ffffff;
 }
 
-/* game-details-wrapper */
 .game-details-wrapper {
   display: flex;
   justify-content: center;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 1.3rem;
   letter-spacing: 1px;
   line-height: 1.8rem;
@@ -131,7 +110,7 @@ header {
 
 .game-details-wrapper div > span {
   display: block;
-  font-family: 'Black Ops One', cursive;
+  font-family: "Black Ops One", cursive;
   color: lightgreen;
   background-color: rgba(17, 17, 17, 0.6);
   border-radius: 15px;
@@ -141,12 +120,13 @@ header {
 
 .overlay {
   grid-column: 1/-1;
-  grid-row: 1/-1;
-  font-family: 'Monoton', cursive;
+  text-align: center;
+  font-family: "Monoton", cursive;
   font-size: 5rem;
   color: var(--text-color);
   background-color: white;
-  opacity: 0.7;
+  border-radius: 15px;
+  opacity: 0.5;
   padding: 20px;
 }
 
@@ -155,7 +135,7 @@ footer {
   justify-content: space-around;
   height: 20px;
   padding: 10px;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 1.4rem;
   background-color: #aaaaaa;
   position: fixed;
@@ -169,114 +149,51 @@ footer .author span {
 }
 
 /*************************************************************************CSS-FLIP***************************************************/
-/* entire container, keeps perspective */
-.flip-container {
+
+.game-content-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
   perspective: 1000px;
+  width: 70vw;
+  margin-bottom: 100px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 15px;
+  border-radius: 15px;
 }
 
-/* flip speed goes here */
-.flipper {
-  display: flex;
-  justify-content: start;
-  transition: 0.6s;
+.card {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-areas: "overlap";
   transform-style: preserve-3d;
-
-  position: relative;
-  box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.2);
+  transition: 0.5s all ease-in-out;
+  padding: 15px;
+  background-color: rgb(255, 118, 101);
+  border-radius: 10px;
+  padding: 10px;
 }
-
-/* hide back of pane during swap */
-.front,
-.back {
-  backface-visibility: hidden;
-
-  position: relative;
-  top: 0;
-  left: 0;
-  /* hack to make the flip effect work without position:absolute */
-  width: 0.1em;
-}
-
-/* front pane, placed above back, initially hidden pane  */
 .front {
-  z-index: 2;
-  /* for firefox 31 */
+  grid-area: overlap;
   transform: rotateY(180deg);
 }
 
-.front img {
-  width: 15vh;
-}
-
-/* back */
 .back {
   transform: rotateY(0deg);
+  grid-area: overlap;
+}
+.back,
+.front > img {
+  width: 8vw;
 }
 
-.back img {
-  width: 15vh;
-}
-
-/* MEDIA QUERIES*/
-/* Small devices (landscape phones, 576px and up) */
-/* @media screen and (max-width: 767.98px) { */
-@media screen and (max-width: 1280px) {
-  header {
-    font-size: 2rem;
-    width: 70vw;
-  }
-
-  .game-content-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(30vw, 1fr));
-    padding-right: 20vw;
-  }
-
-  .game-control-wrapper button {
-    margin: 10px 5px;
-    border-radius: 10px;
-    font-weight: bold;
-    height: 2rem;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  .game-details-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 0.8rem;
-    justify-content: center;
-    margin-bottom: 0.8rem;
-    width: 50%;
-  }
-
-  .game-details-wrapper div {
-    background-color: #aaaaaa;
-    text-align: center;
-    border-radius: 15px;
-  }
-
-  .game-details-wrapper div > span {
-    display: block;
-    font-family: 'Black Ops One', cursive;
-    color: lightgreen;
-    background-color: rgba(17, 17, 17, 0.6);
-    border-radius: 15px;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .front img {
-    width: 15vw;
-  }
-  .back img {
-    width: 15vw;
-  }
-
-  footer {
-    font-size: 0.8rem;
-    justify-content: space-around;
-  }
+.back,
+.front {
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Extra large devices (large desktops, 1200px and up) */

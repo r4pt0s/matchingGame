@@ -28,29 +28,25 @@ const createCardDiv = (cssClass, srcString = "") => {
 };
 
 const createCard = index => {
-  // div class flip-container
-  const flipContainer = createContainerDiv("flip-container", {
+  //div class card
+  const card = createContainerDiv("card", {
     attribute: "data-key",
     value: index
   });
-  // div class flipper
-  const flipper = createContainerDiv("flipper");
 
-  //Append everything into their container
-  flipper.appendChild(createCardDiv("front"));
-  flipper.appendChild(createCardDiv("back", "assets/card_back/ztm.png"));
-  flipContainer.appendChild(flipper);
+  card.appendChild(createCardDiv("front"));
+  card.appendChild(createCardDiv("back", "assets/card_back/ztm.png"));
 
-  cardDeck.appendChild(flipContainer);
+  cardDeck.appendChild(card);
 };
 
 cardDeck.addEventListener("click", e => {
   const parentEventContainer = e.target.parentElement.parentElement;
   const cardClassList = parentEventContainer.classList;
 
-  if (cardClassList.contains("flipper") && !cardClassList.contains("active")) {
+  if (cardClassList.contains("card") && !cardClassList.contains("active")) {
     const result = game.activeCards(
-      parentEventContainer.parentElement.getAttribute("data-key")
+      parentEventContainer.getAttribute("data-key")
     );
     const cardFrontFaceImg = parentEventContainer.querySelector("img");
 
@@ -64,7 +60,7 @@ cardDeck.addEventListener("click", e => {
       setTimeout(() => {
         Object.values(result.cards).forEach(cardKey => {
           const activeCard = document.querySelector(
-            `div[data-key= "${cardKey}"] > .flipper`
+            `div[data-key= "${cardKey}"]`
           );
 
           activeCard.style.transform = "rotateY(0deg)";
