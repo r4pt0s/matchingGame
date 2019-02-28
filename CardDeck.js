@@ -85,8 +85,19 @@ class CardDeck {
   }
 
   gameFinished() {
-    console.log(this.countPoints === this.deckSize / 2);
+    const returnVal =
+      this.countPoints === this.deckSize / 2 ? this.countPoints : false;
+
+    console.log(this.countPoints, this.deckSize / 2, returnVal);
+
+    if (returnVal) {
+      this.resetGameStats();
+      return returnVal;
+    }
+
+    return false;
   }
+
   resetGameStats() {
     this.deckArray = [];
     this.selectedCards = { card1: null, card2: null };

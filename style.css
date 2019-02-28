@@ -25,8 +25,8 @@ body {
 
 header {
   font-family: "Lobster", cursive;
-  width: 40vw;
-  font-size: 3rem;
+  width: 80vw;
+  font-size: 10vw;
   margin: 8px auto;
   padding-bottom: 8px;
   text-align: center;
@@ -51,13 +51,14 @@ header {
 
 .game-control-wrapper .game-level-btngrp {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
   padding: 5px;
 }
 
 .game-control-wrapper button {
   font-family: "Lobster", cursive;
-  font-size: 2vh;
+  font-size: 3vh;
   margin: 5px 5px;
   border-radius: 5px;
   cursor: pointer;
@@ -103,7 +104,7 @@ header {
   margin: 10px 5px;
   padding: 10px;
   background-color: #aaaaaa;
-  width: 10rem;
+  width: 33.33333333%;
   text-align: center;
   border-radius: 15px;
 }
@@ -111,32 +112,47 @@ header {
 .game-details-wrapper div > span {
   display: block;
   font-family: "Black Ops One", cursive;
+  font-size: 1.1rem;
   color: lightgreen;
   background-color: rgba(17, 17, 17, 0.6);
   border-radius: 15px;
-  width: 80%;
+  width: 5.2rem;
   margin: 0 auto;
+}
+
+.game-content-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 180px);
+  grid-gap: 20px;
+  justify-content: center;
+  perspective: 1900px;
+  width: 70vw;
+  margin-bottom: 100px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 15px;
+  border-radius: 15px;
 }
 
 .overlay {
   grid-column: 1/-1;
   text-align: center;
-  font-family: "Monoton", cursive;
-  font-size: 5rem;
+  font-family: "Lobster", cursive;
+  font-size: 4vw;
   color: var(--text-color);
   background-color: white;
   border-radius: 15px;
   opacity: 0.5;
-  padding: 20px;
 }
 
 footer {
   display: flex;
   justify-content: space-around;
   height: 20px;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
   font-family: "Lobster", cursive;
-  font-size: 1.4rem;
+  font-size: 1rem;
   background-color: #aaaaaa;
   position: fixed;
   left: 0;
@@ -145,22 +161,10 @@ footer {
 }
 
 footer .author span {
-  margin-left: 2rem;
+  padding-left: 2rem;
 }
 
 /*************************************************************************CSS-FLIP***************************************************/
-
-.game-content-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 10px;
-  perspective: 1000px;
-  width: 70vw;
-  margin-bottom: 100px;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 15px;
-  border-radius: 15px;
-}
 
 .card {
   display: grid;
@@ -184,8 +188,9 @@ footer .author span {
   grid-area: overlap;
 }
 .back,
-.front > img {
-  width: 8vw;
+.front img {
+  width: 100%;
+  object-fit: contain;
 }
 
 .back,
@@ -194,6 +199,20 @@ footer .author span {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 756px) {
+  .game-content-wrapper {
+    grid-template-columns: repeat(2, 170px);
+    justify-content: center;
+    width: 100vw;
+    grid-gap: 10px;
+    margin-bottom: 50px;
+  }
+
+  .overlay {
+    font-size: 10vw;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */

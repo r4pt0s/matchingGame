@@ -49,6 +49,15 @@ cardDeck.addEventListener("click", e => {
       parentEventContainer.getAttribute("data-key")
     );
     const cardFrontFaceImg = parentEventContainer.querySelector("img");
+    const endOfGame = game.gameFinished();
+
+    if (endOfGame) {
+      cardDeck.innerHTML = `
+    <div class="overlay">
+      <p>Congratulations your score is: ${endOfGame}</p>
+    </div>`;
+      clearInterval(gameDurationHandler);
+    }
 
     parentEventContainer.classList.add("active");
 
@@ -75,8 +84,6 @@ cardDeck.addEventListener("click", e => {
     }
     if (result.score) gameScore.textContent = result.score;
     if (result.moves) gameMoves.textContent = result.moves;
-
-    game.gameFinished();
   }
 });
 
@@ -118,5 +125,3 @@ gameControls.addEventListener("click", e => {
     }
   }
 });
-
-console.log(cardDeck);
